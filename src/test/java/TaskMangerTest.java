@@ -38,12 +38,21 @@ public class TaskMangerTest {
 
     @Test
     public void parseSetStatusDoneTest(){
-
+        Map<Character, Task> taskMap = new HashMap<>();
+        Task task = new Task(1,"Learn computer",TaskStatus.DONE);
+        taskMap.put('x',task);
+        String input = "x 1";
+        assertEquals(taskMap,taskManager.parseUserInput(input));
     }
 
     @Test
     public void parserSetStatusTodo(){
-
+        Map<Character, Task> taskMap = new HashMap<>();
+        Task task = new Task(1,"Learn computer",TaskStatus.TO_DO);
+        taskMap.put('o',task);
+        String input = "o 1";
+        assertEquals(taskMap,taskManager.parseUserInput(input));
     }
+
 
 }

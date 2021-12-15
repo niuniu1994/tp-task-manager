@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TaskManager {
 
@@ -30,15 +27,36 @@ public class TaskManager {
 
         switch (action){
             case '+' :
-                Integer id = taskMap.keySet().stream().max((x,y) -> x - y).orElse(1);
+                Integer id = taskMap.keySet().stream().max(Comparator.comparingInt(x-> x)).orElse(1);
                 map.put('+',new Task(id + 1,desc,TaskStatus.TO_DO));
+                break;
             case '-':
-                if (taskMap.keySet().contains(Integer.parseInt(desc))){
+                if (taskMap.containsKey(Integer.parseInt(desc))){
                     map.put('-',taskMap.get(Integer.parseInt(desc)));
                 }else {
                     throw new IllegalArgumentException();
                 }
+                break;
+            case 'o':
+                if (taskMap.containsKey(Integer.parseInt(desc))){
+                    Task task = taskMap.get(Integer.parseInt(desc));
+                    task.setStatus(TaskStatus.TO_DO);
+                    map.put('o',task);
+                }else {
+                    throw new IllegalArgumentException();
+                }
+                break;
+            case 'x':
+                if (taskMap.containsKey(Integer.parseInt(desc))){
+                    Task task = taskMap.get(Integer.parseInt(desc));
+                    task.setStatus(TaskStatus.DONE);
+                    map.put('x',task);
+                }else {
+                    throw new IllegalArgumentException();
+                }
+                break;
             default:
+                break;
         }
 
         return map;
