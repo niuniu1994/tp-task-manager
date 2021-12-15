@@ -1,5 +1,5 @@
 public enum TaskStatus {
-    TO_DO("todo"),DONE("done");
+    TO_DO(" "),DONE("x");
 
     private String status;
 

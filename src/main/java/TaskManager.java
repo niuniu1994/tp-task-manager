@@ -76,4 +76,13 @@ public class TaskManager {
     public void setTaskMap(Map<Integer, Task> taskMap) {
         this.taskMap = taskMap;
     }
+    public String parseMap2String(){
+        StringBuilder stringBuilder = new StringBuilder();
+        taskMap.keySet().forEach(key -> {
+            Task task = taskMap.get(key);
+            stringBuilder.append(String.format("%d [%s] %s\n",task.getId(),task.getStatus().getStatus(),task.getDesc()));
+        });
+        return stringBuilder.toString();
+    }
+
 }
