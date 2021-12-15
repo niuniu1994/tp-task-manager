@@ -29,7 +29,11 @@ public class TaskMangerTest {
 
     @Test
     public void parseRemoveTaskTest(){
-
+        Map<Character, Task> taskMap = new HashMap<>();
+        Task task = new Task(1,"Learn computer",TaskStatus.DONE);
+        taskMap.put('-',task);
+        String input = "- 1";
+        assertEquals(taskMap,taskManager.parseUserInput(input));
     }
 
     @Test

@@ -32,6 +32,12 @@ public class TaskManager {
             case '+' :
                 Integer id = taskMap.keySet().stream().max((x,y) -> x - y).orElse(1);
                 map.put('+',new Task(id + 1,desc,TaskStatus.TO_DO));
+            case '-':
+                if (taskMap.keySet().contains(Integer.parseInt(desc))){
+                    map.put('-',taskMap.get(Integer.parseInt(desc)));
+                }else {
+                    throw new IllegalArgumentException();
+                }
             default:
         }
 
