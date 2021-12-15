@@ -22,6 +22,8 @@ public class TaskManager {
         }else {
             taskMap.put(task.getId(),task);
         }
+
+        System.out.println(parseMap2String());
     }
 
     public Map<Character, Task> parseUserInput(String input){
@@ -34,7 +36,7 @@ public class TaskManager {
 
         switch (action){
             case '+' :
-                Integer id = taskMap.keySet().stream().max(Comparator.comparingInt(x-> x)).orElse(1);
+                Integer id = taskMap.keySet().stream().max(Comparator.comparingInt(x-> x)).orElse(0);
                 map.put('+',new Task(id + 1,desc,TaskStatus.TO_DO));
                 break;
             case '-':
@@ -68,6 +70,16 @@ public class TaskManager {
 
         return map;
     }
+
+    public String parseMap2String(){
+        StringBuilder stringBuilder = new StringBuilder();
+        taskMap.keySet().forEach(key -> {
+            Task task = taskMap.get(key);
+            stringBuilder.append(String.format("%d [%s] %s\n",task.getId(),task.getStatus().getStatus(),task.getDesc()));
+        });
+        return stringBuilder.toString().substring(0,stringBuilder.length() > 0 ? stringBuilder.length()-1 : 0);
+    }
+
 
     public Map<Integer, Task> getTaskMap() {
         return taskMap;
