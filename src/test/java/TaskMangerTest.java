@@ -27,6 +27,7 @@ public class TaskMangerTest {
     }
 
 
+
     @Test
     public void parseRemoveTaskTest(){
         Map<Character, Task> taskMap = new HashMap<>();
@@ -85,13 +86,4 @@ public class TaskMangerTest {
         assertEquals(task,taskManager.getTaskMap().get(1));
     }
 
-
-    @Test
-    public void outputTaskMapStringFormatTest(){
-        final String expect = "1 [x] Learn computer\n2 [ ] Eat\n";
-        Task task = new Task(2,"Eat",TaskStatus.TO_DO);
-        taskManager.getTaskMap().put(2,task);
-
-        assertEquals(expect,taskManager.parseMap2String());
-    }
 }
