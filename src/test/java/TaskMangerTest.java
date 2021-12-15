@@ -54,5 +54,35 @@ public class TaskMangerTest {
         assertEquals(taskMap,taskManager.parseUserInput(input));
     }
 
+    @Test
+    public void addTaskIntoTaskMapTest(){
+        Task task = new Task(2,"Eat",TaskStatus.TO_DO);
+        String input = "+ Eat";
+        taskManager.taskHandler(input);
+        assertEquals(task,taskManager.getTaskMap().get(2));
+    }
+
+    @Test
+    public void removeTaskIntoTaskMapTest(){
+        String input = "- 1";
+        taskManager.taskHandler(input);
+        assertEquals(0,taskManager.getTaskMap().size());
+    }
+
+    @Test
+    public void changeStatusToDoTaskIntoTaskMapTest(){
+        Task task = new Task(1,"Learn computer",TaskStatus.TO_DO);
+        String input = "o 1";
+        taskManager.taskHandler(input);
+        assertEquals(task,taskManager.getTaskMap().get(1));
+    }
+
+    @Test
+    public void changeStatusDoneTaskIntoTaskMapTest(){
+        Task task = new Task(1,"Learn computer",TaskStatus.DONE);
+        String input = "x 1";
+        taskManager.taskHandler(input);
+        assertEquals(task,taskManager.getTaskMap().get(1));
+    }
 
 }

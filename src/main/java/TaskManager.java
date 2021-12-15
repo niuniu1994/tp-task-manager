@@ -14,7 +14,14 @@ public class TaskManager {
     }
 
     public void taskHandler(String input){
-
+        Map<Character, Task> taskMap1 = parseUserInput(input);
+        Character action = taskMap1.keySet().stream().findFirst().get();
+        Task task = taskMap1.get(action);
+        if (action.equals('-')){
+            taskMap.remove(task.getId());
+        }else {
+            taskMap.put(task.getId(),task);
+        }
     }
 
     public Map<Character, Task> parseUserInput(String input){
@@ -60,5 +67,13 @@ public class TaskManager {
         }
 
         return map;
+    }
+
+    public Map<Integer, Task> getTaskMap() {
+        return taskMap;
+    }
+
+    public void setTaskMap(Map<Integer, Task> taskMap) {
+        this.taskMap = taskMap;
     }
 }
